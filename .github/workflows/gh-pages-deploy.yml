@@ -71,9 +71,9 @@ jobs:
       #   with:
       #     # Upload entire repository
       #     path: '.'
-      - name: List deployed files
-        run: ls -R
-        working-directory: dist
+      # - name: List deployed files
+      #   run: ls -R
+      #   working-directory: dist
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
