@@ -1,0 +1,19 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "parcel",
+    "build": "rimraf dist && parcel build"
+  },
+  "source": "src/*.html",
+  "keywords": [],
+  "author": "Den Lahodnyi",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.14.4",
+    "rimraf": "^6.0.1",
+    "sharp": "^0.33.5",
+    "svgo": "^3"
+  }
+}
