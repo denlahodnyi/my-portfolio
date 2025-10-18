@@ -1,0 +1,117 @@
+@layer utils {
+  @property --v-space {
+    syntax: '<length> | <percentage>';
+    initial-value: 16px;
+    inherits: false;
+  }
+  /* @property --rotate {
+    syntax: '<angle>';
+    initial-value: 30deg;
+    inherits: false;
+  } */
+
+  .v-spacer > * + * {
+    margin-block-start: var(--v-space);
+  }
+  .primary {
+    color: var(--primary);
+  }
+  .secondary {
+    color: var(--secondary);
+  }
+  .uppercase {
+    text-transform: uppercase;
+  }
+  .stripe-underline {
+    position: relative;
+    z-index: 1;
+    &.stripe-underline--secondary {
+      --stripe-color: var(--secondary);
+    }
+    &::before {
+      --_wrapper-h: var(--wrapper-h, 10px);
+      --_wrapper-w: var(--wrapper-w, 100%);
+      --_wrapper-pos-x: var(--wrapper-pos-x, 0);
+      --_wrapper-pos-y: var(--wrapper-pos-y, 78%);
+      --_stripe-h: calc(var(--_wrapper-h));
+      --_stripe-color: var(--stripe-color, var(--primary));
+      content: '';
+      display: block;
+      inline-size: var(--_wrapper-w);
+      block-size: var(--_wrapper-h);
+      position: absolute;
+      top: var(--_wrapper-pos-y);
+      left: var(--_wrapper-pos-x);
+      z-index: -1;
+      background-image: linear-gradient(
+          135deg,
+          var(--_stripe-color) calc(100% - var(--_stripe-h)),
+          transparent 50%
+        ),
+        linear-gradient(135deg, transparent 50%, var(--_stripe-color) 50%);
+      background-size: calc(var(--_wrapper-w) - var(--_stripe-h))
+          var(--_stripe-h),
+        var(--_stripe-h) var(--_stripe-h);
+      background-position: var(--_stripe-h) 0, 0 0;
+      background-repeat: no-repeat;
+    }
+  }
+  .double-stripe-underline {
+    position: relative;
+    z-index: 1;
+    &::before {
+      --_wrapper-h: var(--wrapper-h, 20px);
+      --_wrapper-w: var(--wrapper-w, 100%);
+      --_wrapper-pos-x: var(--wrapper-pos-x, 0);
+      --_wrapper-pos-y: var(--wrapper-pos-y, 78%);
+      --_stripe-h: calc(var(--_wrapper-h) / 2);
+      content: '';
+      display: block;
+      inline-size: var(--_wrapper-w);
+      block-size: var(--_wrapper-h);
+      position: absolute;
+      top: var(--_wrapper-pos-y);
+      left: var(--_wrapper-pos-x);
+      z-index: -1;
+      background-image: linear-gradient(
+          135deg,
+          var(--secondary) calc(100% - var(--_stripe-h)),
+          transparent 50%
+        ),
+        linear-gradient(135deg, transparent 50%, var(--secondary) 50%),
+        linear-gradient(
+          135deg,
+          var(--primary) calc(100% - var(--_stripe-h)),
+          transparent 50%
+        ),
+        linear-gradient(135deg, transparent 50%, var(--primary) 50%);
+      background-size: calc(var(--_wrapper-w) - var(--_stripe-h))
+          var(--_stripe-h),
+        var(--_stripe-h) var(--_stripe-h),
+        calc(var(--_wrapper-w) - var(--_stripe-h)) var(--_stripe-h),
+        var(--_stripe-h) var(--_stripe-h);
+      background-position: var(--_stripe-h) 0, 0 0,
+        var(--_stripe-h) var(--_stripe-h), 0 var(--_stripe-h);
+      background-repeat: no-repeat;
+    }
+  }
+  .divider {
+    --r: 5px;
+    height: 100px;
+    background-image: radial-gradient(
+        circle at calc(50% - 2 * var(--r) - var(--r) * 1.5) 50%,
+        var(--secondary) var(--r),
+        transparent var(--r)
+      ),
+      radial-gradient(
+        circle at 50% 50%,
+        var(--secondary) var(--r),
+        transparent var(--r)
+      ),
+      radial-gradient(
+        circle at calc(50% + 2 * var(--r) + var(--r) * 1.5) 50%,
+        var(--secondary) var(--r),
+        transparent var(--r)
+      );
+  }
+}
