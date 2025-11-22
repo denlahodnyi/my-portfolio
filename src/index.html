@@ -6,9 +6,15 @@
     <meta name="description" content="Den Lahodnyi's portfolio" />
     <title>Den's Portfolio</title>
     <link
-      rel="icon"
-      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧑🏻‍💻</text></svg>"
+    rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧑🏻‍💻</text></svg>"
     />
+    <link rel="preload"
+    href="/src/assets/fonts/chakra-petch_5.2.5/webfonts/chakra-petch-latin-500-normal.woff2"
+    as="font" type="font/woff2" crossorigin />
+    <link rel="preload"
+    href="/src/assets/fonts/chakra-petch_5.2.5/webfonts/chakra-petch-latin-700-normal.woff2"
+    as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="/src/styles/main.css" />
   </head>
   <body class="content-grid">
@@ -420,7 +426,7 @@ It’s also the first time I’ve built something using Remix.
     </svg>
 
     <script src="/src/js/theme.js" defer></script>
-    <script type="module" src="/src/js/hero.js"></script>
-    <script type="module" src="/src/js/effects.js"></script>
+    <script type="module" src="/src/js/hero.js" async></script>
+    <script type="module" src="/src/js/effects.js" defer></script>
   </body>
 </html>
