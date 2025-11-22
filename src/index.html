@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="/src/styles/main.css" />
   </head>
   <body class="content-grid">
-    <header id="header" class="page-header grid-col-content">
+    <header id="header" class="page-header grid-col-full">
       <nav class="page-header__socials">
           <a class="link" href="https://github.com/denlahodnyi" target="_blank" aria-label="GitHub Profile Link">
             <svg aria-hidden>
@@ -30,14 +30,14 @@
               <use href="#linkedin-icon" />
             </svg>
           </a>
-        </nav>
-        <div style="display: none;" class="page-header__actions">
-          <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
-            <svg aria-hidden>
-              <use href="#sun-icon" />
-            </svg>
-          </button>
-        </div>
+      </nav>
+      <div style="display: none;" class="page-header__actions">
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+          <svg aria-hidden>
+            <use href="#sun-icon" />
+          </svg>
+        </button>
+      </div>
       <hgroup class="page-header__title-group">
         <p class="page-header__title-line-1">
           <span data-anime-target="header-line-1-word">&lt;Hey&gt;.</span>
@@ -57,7 +57,7 @@
     </header>
 
     <main class="grid-col-content">
-      <section class="content-section">
+      <section class="content-section auto-render">
         <h2 class="content-section__title" data-anime-target="section-title">Work XP</h2>
         <ul class="work-list">
           <li class="work-list__item" data-anime-target="work">
@@ -73,7 +73,7 @@
         </ul>
       </section>
 
-      <section class="content-section">
+      <section class="content-section auto-render">
         <h2 class="content-section__title" data-anime-target="section-title">Featured projects</h2>
         <section class="project" data-anime-target="project">
           <div class="project__content">
@@ -156,7 +156,7 @@
         </section>
       </section>
 
-      <section class="content-section">
+      <section class="content-section auto-render">
         <h2 class="content-section__title" data-anime-target="section-title">Home projects</h2>
         <div class="home-projects">
           <section class="home-project" data-anime-target="home-project">
@@ -427,7 +427,7 @@ It’s also the first time I’ve built something using Remix.
 
     <script src="/src/js/theme.js" defer></script>
     <!-- <script type="module" src="/src/js/hero.js" async></script> -->
-    <script type="module" src="/src/js/effects.js" defer></script>
+    <!-- <script type="module" src="/src/js/effects.js" defer></script> -->
     <script type="module" src="/src/js/hero2.js" defer></script>
   </body>
 </html>
