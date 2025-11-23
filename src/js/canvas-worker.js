@@ -10,8 +10,8 @@ import {
   Vector2,
   WebGLRenderer,
 } from 'three';
-import vertexSrc from '/src/assets/vertex.glsl';
-import fragmentSrc from '/src/assets/fragment.glsl';
+import vertexSrc from '/src/assets/shaders/vertex.glsl';
+import fragmentSrc from '/src/assets/shaders/fragment.glsl';
 
 // Source: https://tympanus.net/Tutorials/BayerDithering/
 
