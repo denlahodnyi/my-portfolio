@@ -6,13 +6,19 @@
     <meta name="description" content="Den Lahodnyi's portfolio" />
     <title>Den's Portfolio</title>
     <link
-      rel="icon"
-      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧑🏻‍💻</text></svg>"
+    rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧑🏻‍💻</text></svg>"
     />
+    <link rel="preload"
+    href="/src/assets/fonts/chakra-petch_5.2.5/webfonts/chakra-petch-latin-500-normal.woff2"
+    as="font" type="font/woff2" crossorigin />
+    <link rel="preload"
+    href="/src/assets/fonts/chakra-petch_5.2.5/webfonts/chakra-petch-latin-700-normal.woff2"
+    as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="/src/styles/main.css" />
   </head>
   <body class="content-grid">
-    <header id="header" class="page-header grid-col-content">
+    <header id="header" class="page-header grid-col-full">
       <nav class="page-header__socials">
           <a class="link" href="https://github.com/denlahodnyi" target="_blank" aria-label="GitHub Profile Link">
             <svg aria-hidden>
@@ -24,14 +30,14 @@
               <use href="#linkedin-icon" />
             </svg>
           </a>
-        </nav>
-        <div style="display: none;" class="page-header__actions">
-          <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
-            <svg aria-hidden>
-              <use href="#sun-icon" />
-            </svg>
-          </button>
-        </div>
+      </nav>
+      <div style="display: none;" class="page-header__actions">
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+          <svg aria-hidden>
+            <use href="#sun-icon" />
+          </svg>
+        </button>
+      </div>
       <hgroup class="page-header__title-group">
         <p class="page-header__title-line-1">
           <span data-anime-target="header-line-1-word">&lt;Hey&gt;.</span>
@@ -51,7 +57,7 @@
     </header>
 
     <main class="grid-col-content">
-      <section class="content-section">
+      <section class="content-section auto-render">
         <h2 class="content-section__title" data-anime-target="section-title">Work XP</h2>
         <ul class="work-list">
           <li class="work-list__item" data-anime-target="work">
@@ -67,7 +73,7 @@
         </ul>
       </section>
 
-      <section class="content-section">
+      <section class="content-section auto-render">
         <h2 class="content-section__title" data-anime-target="section-title">Featured projects</h2>
         <section class="project" data-anime-target="project">
           <div class="project__content">
@@ -96,16 +102,20 @@
                 <li aria-hidden class="project__tool">Google Maps API</li>
               </ul>
             </div>
-            <a href="https://bagsaway.com/" target="_blank" rel="noopener noreferrer" class="project__link link--outlined"
+            <a href="https://bagsaway.com/" target="_blank" rel="noopener
+            noreferrer" class="project__link link--outlined" style="margin-left: 4px;"
               ><span>Visit homepage</span> <svg aria-hidden><use href="#link-icon" /></svg>
             </a>
           </div>
           <div class="project__img">
             <picture class="lines-bg">
-              <source srcset="/src/assets/img/bagsaway@3x.png?as=webp 3x" />
-              <source srcset="/src/assets/img/bagsaway@2x.png?as=webp 2x" />
+              <source media="(min-width: 64rem)"
+              srcset="/src/assets/img/bagsaway@3x.png?as=webp&quality=75 3x,
+              /src/assets/img/bagsaway@2x.png?as=webp&quality=75 2x" />
               <img
-                src="/src/assets/img/bagsaway.png?as=webp"
+                width="800"
+                height="600"
+                src="/src/assets/img/bagsaway.png?as=webp&quality=65"
                 alt="Bagsaway homepage screenshot"
                 loading="lazy"
               />
@@ -138,10 +148,12 @@
           </div>
           <div class="project__img">
             <picture class="lines-bg" style="--deg: 225deg">
-              <source srcset="/src/assets/img/worktorch@3x.png?as=webp 3x" />
-              <source srcset="/src/assets/img/worktorch@2x.png?as=webp 2x" />
+              <source media="(min-width: 64rem)"
+              srcset="/src/assets/img/worktorch@3x.png?as=webp&quality=75 3x, /src/assets/img/worktorch@2x.png?as=webp&quality=75 2x" />
               <img
-                src="/src/assets/img/worktorch.png?as=webp"
+                width="800"
+                height="600"
+                src="/src/assets/img/worktorch.png?as=webp&quality=65"
                 alt="WorkTorch homepage screenshot"
                 loading="lazy"
               />
@@ -150,7 +162,7 @@
         </section>
       </section>
 
-      <section class="content-section">
+      <section class="content-section auto-render">
         <h2 class="content-section__title" data-anime-target="section-title">Home projects</h2>
         <div class="home-projects">
           <section class="home-project" data-anime-target="home-project">
@@ -160,12 +172,14 @@
               <li>#Local-first</li>
             </ul>
             <picture>
-              <source srcset="/src/assets/img/budget_buddy@3x.png?as=webp 3x" />
-              <source srcset="/src/assets/img/budget_buddy@2x.png?as=webp 2x" />
+              <source media="(min-width: 64rem)" srcset="/src/assets/img/budget_buddy@3x.png?as=webp&quality=75 3x, /src/assets/img/budget_buddy@2x.png?as=webp&quality=75 2x" />
               <img
-                src="/src/assets/img/budget_buddy.png?as=webp"
+                width="500"
+                height="400"
+                src="/src/assets/img/budget_buddy.png?as=webp&quality=65"
                 alt="Project screenshot"
                 loading="lazy"
+                class="home-project__img"
               />
             </picture>
             <p class="home-project__desc">
@@ -211,12 +225,17 @@
               <li>#Nest</li>
             </ul>
             <picture>
-              <source srcset="/src/assets/img/sneakers_store@3x.png?as=webp 3x" />
-              <source srcset="/src/assets/img/sneakers_store@2x.png?as=webp 2x" />
+              <source
+              media="(min-width: 64rem)"
+              srcset="/src/assets/img/sneakers_store@3x.png?as=webp&quality=75
+              3x, /src/assets/img/sneakers_store@2x.png?as=webp&quality=75 2x" />
               <img
-                src="/src/assets/img/sneakers_store.png?as=webp"
+                width="500"
+                height="400"
+                src="/src/assets/img/sneakers_store.png?as=webp&quality=65"
                 alt="Project screenshot"
                 loading="lazy"
+                class="home-project__img"
               />
             </picture>
             <p class="home-project__desc">
@@ -265,12 +284,16 @@
               <li>#Remix</li>
             </ul>
             <picture>
-              <source srcset="/src/assets/img/time_tracker@3x.png?as=webp 3x" />
-              <source srcset="/src/assets/img/time_tracker@2x.png?as=webp 2x" />
+              <source media="(min-width: 64rem)"
+              srcset="/src/assets/img/time_tracker@3x.png?as=webp&quality=75 3x,
+              /src/assets/img/time_tracker@2x.png?as=webp&quality=75 2x" />
               <img
-                src="/src/assets/img/time_tracker.png?as=webp"
+                width="500"
+                height="400"
+                src="/src/assets/img/time_tracker.png?as=webp&quality=65"
                 alt="Project screenshot"
                 loading="lazy"
+                class="home-project__img"
               />
             </picture>
             <p class="home-project__desc">
@@ -319,12 +342,16 @@ It’s also the first time I’ve built something using Remix.
               <li>#React Native</li>
             </ul>
             <picture>
-              <source srcset="/src/assets/img/driver_diary@3x.png?as=webp 3x" />
-              <source srcset="/src/assets/img/driver_diary@2x.png?as=webp 2x" />
+              <source media="(min-width: 64rem)"
+              srcset="/src/assets/img/driver_diary@3x.png?as=webp&quality=75 3x,
+              /src/assets/img/driver_diary@2x.png?as=webp&quality=75 2x" />
               <img
-                src="/src/assets/img/driver_diary.png?as=webp"
+                width="500"
+                height="400"
+                src="/src/assets/img/driver_diary.png?as=webp&quality=65"
                 alt="Project screenshot"
                 loading="lazy"
+                class="home-project__img"
               />
             </picture>
             <p class="home-project__desc">
@@ -420,7 +447,7 @@ It’s also the first time I’ve built something using Remix.
     </svg>
 
     <script src="/src/js/theme.js" defer></script>
-    <script type="module" src="/src/js/hero.js"></script>
-    <script type="module" src="/src/js/effects.js"></script>
+    <script type="module" src="/src/js/effects.js" defer></script>
+    <script type="module" src="/src/js/hero2.js" defer></script>
   </body>
 </html>

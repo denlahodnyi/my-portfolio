@@ -1,11 +1,11 @@
 import {
-  animate,
   createScope,
   createTimeline,
   onScroll,
   splitText,
   stagger,
   utils,
+  waapi,
 } from 'animejs';
 
 const targetQueries = {
@@ -19,13 +19,6 @@ const targetQueries = {
   sectionTitles: '[data-anime-target="section-title"]',
 };
 
-const [body] = utils.$('body');
-const heroTimeline = createTimeline();
-const { chars: titleChars } = splitText(targetQueries.headerTitle, {
-  chars: true,
-  words: false,
-});
-
 createScope({
   mediaQueries: { reduceMotion: '(prefers-reduced-motion)' },
 }).addOnce((self) => {
@@ -33,148 +26,142 @@ createScope({
 
   if (reduceMotion) return;
 
+  const [body] = utils.$('body');
+  const heroTimeline = createTimeline();
+  const { chars: titleChars } = splitText(targetQueries.headerTitle, {
+    chars: true,
+    words: false,
+  });
+
+  const createCharsTl = () => {
+    let charsTl = createTimeline();
+    titleChars.forEach((char, i) => {
+      charsTl = charsTl
+        .sync(
+          waapi.animate(char, {
+            opacity: [0, 1],
+            duration: 150,
+          })
+        )
+        .sync(
+          waapi.animate(targetQueries.titleCaret, {
+            x: char.offsetWidth + char.offsetLeft + 5,
+            y: char.offsetTop,
+            duration: 125,
+          }),
+          '<<'
+        );
+    });
+
+    return charsTl;
+  };
+
   heroTimeline
-    .add(targetQueries.headerLine1Words, {
-      opacity: [0, 1],
-      y: ['30%', 0],
-      duration: 500,
-      delay: stagger(500),
-      ease: 'inOutSine',
-    })
-    .add(targetQueries.titleCaret, {
-      scaleY: [0, 1],
-      opacity: [0.5, 1],
-      duration: 500,
-      easing: 'easeOutExpo',
-    })
-    .label('caret_ready')
-    .add(
-      titleChars,
-      {
+    .sync(
+      waapi.animate(targetQueries.headerLine1Words, {
         opacity: [0, 1],
-        duration: 800,
-        delay: stagger(100),
-      },
-      'caret_ready'
+        y: ['30%', 0],
+        duration: 500,
+        delay: stagger(500),
+        ease: 'inOutSine',
+      })
     )
-    .add(
-      targetQueries.titleCaret,
-      {
-        x: titleChars.map((char, i) => {
-          return {
-            to: char.offsetWidth + char.offsetLeft + 5,
-            delay: i === 0 ? 0 : 100,
-          };
-        }),
-        y: titleChars.map((char, i) => ({
-          to: char.offsetTop,
-          delay: i === 0 ? 0 : 100,
-        })),
-        duration: 50,
-      },
-      '<<'
+    .sync(
+      waapi.animate(targetQueries.titleCaret, {
+        scaleY: [0, 1],
+        opacity: [0.5, 1],
+        duration: 400,
+        ease: 'outExpo',
+      })
     )
+    .sync(createCharsTl())
     .label('title_completes')
-    .add(targetQueries.titleCaret, {
-      scaleY: [1, 0],
-      duration: 500,
-      easing: 'easeOutExpo',
-      onBegin: () => {
-        const caret = utils.$(targetQueries.titleCaret);
-        utils.set(caret, {
-          top: utils.get(caret, 'y'),
-          left: utils.get(caret, 'x'),
-          x: 0,
-          y: 0,
-        });
-      },
+    .call(() => {
+      const caret = utils.$(targetQueries.titleCaret);
+      utils.set(caret, {
+        transformOrigin: `0px calc(${utils.get(caret, 'y')} + ${utils.get(
+          caret,
+          'height'
+        )} / 2)`,
+      });
+      waapi.animate(targetQueries.titleCaret, {
+        scaleY: [1, 0],
+        duration: 400,
+        ease: 'outExpo',
+      });
     })
-    .add(
-      targetQueries.headerLine2,
-      {
+    .sync(
+      waapi.animate(targetQueries.headerLine2, {
         opacity: [0, 1],
         y: ['30%', 0],
         duration: 500,
         ease: 'inOutSine',
-      },
-      'title_completes-=1000'
-    )
-    .init();
+      }),
+      'title_completes-=500'
+    );
 
   const subtitles = utils.$(targetQueries.sectionTitles);
 
   subtitles.forEach((target) => {
-    animate(target, {
+    waapi.animate(target, {
       opacity: [0, 1],
       y: ['30%', 0],
       duration: 500,
       delay: 200,
-      easing: 'inOutSine',
-      autoplay: onScroll({
-        container: body,
-      }),
+      ease: 'inOutSine',
+      autoplay: attachScrollObserver(body),
     });
   });
 
-  animate(targetQueries.workItems, {
+  waapi.animate(targetQueries.workItems, {
     opacity: [0, 1],
     x: ['-20%', 0],
-    y: ['-50%', 0],
     duration: 1000,
     delay: stagger(100),
     ease: 'out(1.68)',
-    autoplay: onScroll({
-      container: body,
-    }),
+    autoplay: attachScrollObserver(body),
   });
 
-  const featuredProjFirstHalf = utils.$(
-    `${targetQueries.projects} > :first-child`
-  );
-  const featuredProjSecondHalf = utils.$(
-    `${targetQueries.projects} > :last-child`
-  );
+  const featuredProj = utils.$(targetQueries.projects);
 
-  featuredProjFirstHalf.forEach((target, i) => {
-    animate(target, {
-      opacity: [0, 1],
-      x: (target) => {
-        return target.parentElement.matches('.project--reverse')
-          ? ['30%', 0]
-          : ['-30%', 0];
-      },
-      duration: 1000,
-      ease: 'out(1.68)',
-      autoplay: onScroll({
-        container: body,
-      }),
-    });
-    animate(featuredProjSecondHalf[i], {
-      opacity: [0, 1],
-      x: (target) => {
-        return target.parentElement.matches('.project--reverse')
-          ? ['-30%', 0]
-          : ['30%', 0];
-      },
-      duration: 1000,
-      ease: 'out(1.68)',
-      autoplay: onScroll({
-        container: body,
-      }),
-    });
+  const getFeatProjAnimeParams = (reversed) => ({
+    opacity: [0, 1],
+    x: reversed ? ['30%', 0] : ['-30%', 0],
+    duration: 1000,
+    ease: 'out(1.68)',
+    autoplay: attachScrollObserver(body),
+  });
+
+  featuredProj.forEach((target, i) => {
+    const isReversed = target.matches('.project--reverse');
+    waapi.animate(target.children[0], getFeatProjAnimeParams(isReversed));
+    waapi.animate(target.children[1], getFeatProjAnimeParams(!isReversed));
   });
 
   const homeProjects = utils.$(targetQueries.homeProjects);
 
   homeProjects.forEach((target) => {
-    animate(target, {
+    waapi.animate(target, {
       opacity: [0, 1],
       y: ['10%', 0],
       duration: 1000,
       ease: 'out(1.68)',
-      autoplay: onScroll({
-        container: body,
-      }),
+      autoplay: attachScrollObserver(body),
     });
   });
 });
+
+function attachScrollObserver(container) {
+  return onScroll({
+    container,
+    // play only on enter forward
+    sync: 'play complete complete complete',
+    onEnterForward: (so) => {
+      // disable if already in view
+      if (so.isInView) so.revert();
+    },
+    onEnterBackward: (so) => {
+      if (so.isInView) so.revert();
+    },
+  });
+}
