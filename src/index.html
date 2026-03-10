@@ -166,6 +166,40 @@
         <h2 class="content-section__title" data-anime-target="section-title">Home projects</h2>
         <div class="home-projects">
           <section class="home-project" data-anime-target="home-project">
+            <h3 class="home-project__title">&lt;YouTube Momentify&gt;</h3>
+            <ul class="home-project__tags" aria-label="tags">
+              <li>#Browser extension</li>
+            </ul>
+            <picture style="margin-block-end: 40px;">
+              <img
+                width="1400"
+                height="560"
+                src="/src/assets/img/momentify.png?as=webp&quality=65"
+                alt="Project screenshot"
+                loading="lazy"
+                class="home-project__img"
+              />
+            </picture>
+            <p class="home-project__desc">
+              Momentify is a Chrome extension that helps users save and organize
+              timestamp bookmarks in YouTube videos. It allows users to quickly
+              return to important moments, add notes, and navigate between saved
+              timestamps directly on the video page. Yeah, there are plenty of
+              similar extensions, but I wanted to create my own. Because, why not?
+            </p>
+            <details open class="home-project__tools-toggle">
+              <summary><svg aria-hidden><use href="#arrow-right-icon" /></svg>Frontend</summary>
+              <ul class="home-project__tools">
+                <li>Typescript</li>
+                <li>HTML</li>
+                <li>CSS</li>
+              </ul>
+            </details>
+            <a href="https://chromewebstore.google.com/detail/gjfgjkogognbffgcmaljdeoodiclhbfi?utm_source=item-share-cb" target="_blank" class="home-project__link link--outlined"
+              ><span>View extension</span> <svg aria-hidden><use href="#chrome-store-icon" /></svg>
+            </a>
+          </section>
+          <section class="home-project" data-anime-target="home-project">
             <h3 class="home-project__title">&lt;Budget Buddy&gt;</h3>
             <ul class="home-project__tags" aria-label="tags">
               <li>#Vue</li>
@@ -387,6 +421,9 @@ It’s also the first time I’ve built something using Remix.
     </footer>
 
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+      <symbol id="chrome-store-icon" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M0 1.637v19.09c0 .9.736 1.636 1.636 1.636h.131a10.4 10.4 0 0 1-.13-1.636 10.3 10.3 0 0 1 1.667-5.64l4.202 7.276h1.128A3.77 3.77 0 0 1 12 16.958a3.77 3.77 0 0 1 3.366 5.406h1.048a4.7 4.7 0 0 0-1.587-5.406h6.83a10.34 10.34 0 0 1 .577 5.406h.13c.9 0 1.636-.737 1.636-1.637V1.637Zm9.273 2.181h5.454a1.09 1.09 0 1 1 0 2.182H9.273a1.09 1.09 0 1 1 0-2.182M12 10.364a10.36 10.36 0 0 1 9.233 5.652H12a4.71 4.71 0 0 0-4.677 4.149L3.91 14.25A10.34 10.34 0 0 1 12 10.364"/>
+      </symbol>
       <symbol id="github-icon" viewBox="0 0 24 24" fill="currentColor">
         <path
           d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
