@@ -7,10 +7,10 @@ on:
     branches:
       - main
     paths:
-      - '*.html'
-      - '*.css'
-      - '*.js'
-
+      - 'src/**'
+      - 'package.json'
+    paths-ignore:
+      - 'README.md'
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -46,7 +46,7 @@ jobs:
           cache: 'pnpm'
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       - name: Build Project
         run: pnpm run build --public-url . # Relative public URL is crucial
